@@ -1,0 +1,429 @@
+/* CSS Document */
+*, *::after, *::before {
+  box-sizing:border-box;  
+}
+
+html, body {
+  min-height:100%;
+  margin:0;
+}
+
+button:not([disabled]) {
+  cursor:pointer;
+}
+
+/* Kirby's CSS */
+
+/* colorpalette
+body: #FFC4CA
+body shadow: #FFB5C2
+cheeks: #FF9FAB
+pupil: #F2F2F2
+eye color: #678E99
+feet: #F26375
+feet glimmer: #ED9695
+feet sole: #DA4268
+eyes / outline: #692E20 */
+
+/* Kirby container */
+.kirby {
+  position: absolute;
+  width: 35em;
+  height: 35em;
+  background-color: rgb(119 48 24 / 47%);
+  left: calc(50% - 17em);
+  bottom: calc(50% - 17em);
+}
+
+.body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #FFC4CA;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: inset -.05em -2em #FFB5C2;
+}
+
+.face {
+  position: relative;
+  width: 14em;
+  height: 14em;
+  display: flex;
+  left: 10em;
+  bottom: -5em;
+  align-items: center;
+  gap: 3.5em;
+}
+
+.eye {
+  width: 4em;
+  height: 10.5em;
+  background-color: #692E20;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  flex-direction: column;
+
+}
+
+.color {
+  width: 2.2em;
+  height: 2.2em;
+  background-color: #678E99;
+  border-radius: 50%;
+}
+
+.pupil {
+  position: relative;
+  width: 3em;
+  height: 5em;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  border: solid #692E20 0.17em;
+  padding: 0.5em;
+}
+@keyframes mouth {
+  0% {
+    border-radius: 50%;
+    width: 2.5em;
+  height: 1.25em;
+  background-color: #692E20;
+  transform:translateY(0) translateX(0);
+
+
+  }
+  100% {
+  width: 7.5em;
+  height: 10em;
+  border-radius: 50%;
+  background-color: #692E20;
+  transform:translateY(5em) translateX(-2.5em);
+
+  }
+}
+
+.mouth {
+  position: absolute;
+  width: 2.5em;
+  height: 1.25em;
+  /* aspect-ratio: 2/1; */
+  /* bottom: 0em; */
+  /* left: 4.5em; */
+  left: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+    farthest-side circle at 50% 0%,
+    rgba(0, 0, 0, 0) 70%,
+    #692E20 70% 99%,
+    rgba(0, 0, 0, 0) 99%
+  );
+  animation-name: mouth, skew;
+  animation-duration:1s, .5s;
+  animation-iteration-count: 1, 12;
+  animation-delay: 2s, 3s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
+  /* transform-origin: center; */
+  transform-origin: left;
+}
+
+@keyframes skew {
+  0% {
+    transform:scaleX(1) skewY(0);
+  }
+  100% {
+    transform:scaleX(.7) skewY(5deg);
+  }
+}
+
+.chew {
+  width: 3em;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  /* background-color: red; */
+  border: solid .4em ;
+  border-color: transparent #692e20  transparent transparent;
+  position: absolute;
+  left: -2.6em;
+  bottom: -.7em;
+
+  scale:0;
+
+  animation-name: kauw;
+  animation-duration:6.25s;
+  animation-iteration-count:1;
+  animation-delay:3s;
+
+  transform-origin: right;
+}
+
+@keyframes kauw {
+  0% {
+    scale:0;
+  }
+  5%, 97% {
+    scale:1;
+  }
+  100% {
+    scale:0;
+  }
+}
+
+@keyframes chew {
+  0% {
+    transform:
+      translateY(1em)
+      rotate(0)
+      translateY(-1em)
+      rotate(0)
+      ;
+    }
+  100% {
+    transform:
+      translateY(1em)
+      rotate(1turn)
+      translateY(-1em)
+      rotate(-1turn);
+  }
+}
+
+.face span {
+  width: 2.5em;
+  height: 1.25em;
+  position: absolute;
+  bottom: 0em;
+  left: 4.5em;
+  /* background-color: blue; */
+  animation-name: chew;
+  animation-duration: 1s;
+  animation-iteration-count: 6;
+  animation-delay: 3s;
+  /* animation-fill-mode: both; */
+  animation-timing-function: linear;
+  /* transform-origin: 50% 150%; */
+}
+
+
+/* .kirby:hover .mouth {
+  position: absolute;
+  width: 2.5em;
+  height: 3em;
+  left: calc(50% - 2.5em);
+  bottom: 0;
+  background-color: #692e20;
+  border-radius: 1.5em 1.5em 1.5em 1.5em;
+  box-shadow: inset 0 -0.25em 0 #00000033;
+  transform: rotate(180deg);
+  background-image: none;
+} */
+
+.cheek {
+  position: absolute;
+  width: 6.5em;
+  height: 5.5em;
+  background-color: #FF9FAB;
+  border-radius: 50%;
+  top: 13em;
+  z-index: 99;
+}
+
+.cheek.left {
+  left: 3em;
+}
+
+.cheek.right {
+  left: 22em;
+}
+
+.arm {
+  position: absolute;
+  width: 12em;
+  height: 12em;
+  border-radius: 50%;
+  background-color: inherit;
+  bottom: 6em;
+  box-shadow: inset 0em -1em 0px 0px #ffb5c2;
+}
+
+@keyframes swing-left {
+  0% { top:17em; }
+  100% { top:16.5em; }
+}
+
+@keyframes swing-right {
+  0% { top:17em; }
+  100% { top:16.5em; }
+}
+
+.arm.left {
+  left: -3.7em;
+
+  animation-name:swing-left;
+  animation-duration:.35s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+
+.arm.right {
+  right: -4em;
+
+  animation-name:swing-right;
+  animation-duration:.35s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+
+@keyframes wiggle-left {
+  0% { 
+    rotate: 2deg;
+  }
+  100% { 
+    rotate: -5deg
+  }
+}
+
+@keyframes wiggle-right {
+  0% { 
+    rotate: -2deg;
+  }
+  100% { 
+    rotate: 5deg
+  }
+}
+
+.foot {
+  display: flex;
+  position: absolute;
+  background-color: #F26375;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.foot.left {
+  width: 12.5em;
+  aspect-ratio: 1/1.1;
+  left:1em;
+  transform:rotate(340deg);
+  border-radius: 50% 50% 45% 45%;
+  top:21em;
+
+  transform-origin:center bottom;
+  animation-name:wiggle-left;
+  animation-duration:.7s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+
+.left-sole {
+  position: relative;
+  width: 7em;
+  height: 10em;
+  left: 1em;
+  bottom: -0.5em;
+  background-color: #DA4268;
+  border-radius: 50% 50% 45% 45%;
+}
+
+.left-shine {
+  position: absolute;
+    width: 1.4em;
+    aspect-ratio: 1/1;
+    background-color: #f88896;
+    border-radius: 50%;
+    top: 0.4em;
+    right: 6em;
+}
+
+.foot.right {
+  width: 13em;
+  aspect-ratio: 1/1.2;
+  right:3em;
+  transform:rotate(20deg);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top:20em;
+
+  transform-origin:center bottom;
+  animation-name:wiggle-right;
+  animation-duration:.7s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+
+.right-sole {
+  position: relative;
+  width: 7em;
+  height: 10em;
+  background-color: #DA4268;
+  border-radius: 50% 50% 45% 45%;
+  transform:rotate(5deg);
+  bottom: -1em;
+  right: -4.5em;
+}
+
+.right-shine {
+  position: absolute;
+    width: 1.4em;
+    aspect-ratio: 1/1;
+    background-color: #f88896;
+    border-radius: 50%;
+    top: 1em;
+    right: 4.5em;
+}
+
+.onigiri {
+  position: absolute;
+  width: 7em;
+  aspect-ratio: 1/1;
+  background-image: url(https://cdn-icons-png.flaticon.com/512/4474/4474854.png);
+  background-size: cover;
+  top: 1em;
+  right: -8em;
+  transition: 1s;
+
+  animation-name: eat;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 444% ;
+  animation-fill-mode: forwards;
+  z-index: 99;
+}
+
+@keyframes eat {
+  0% {
+    transform: rotate(0deg);}
+  97% {
+    transform: rotate(-60deg);
+    opacity: 100%;
+  }
+  100% {
+    transform: rotate(-60deg);
+    opacity: 0;
+  }
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  width: 5em;
+  height: 1.5em;
+  padding: .2em 0;
+  background-color: #678E99;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 2em;
+  position: absolute;
+  top: .5%;
+  left: calc(50% - 5em/2);
+  color: #f2f2f2;
+  cursor: pointer;
+
+}
